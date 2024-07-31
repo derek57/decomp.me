@@ -119,7 +119,7 @@ COMMON_SHC_FLAGS: Flags = [
 ]
 
 COMMON_GCC_FLAGS: Flags = [
-    FlagSet(id="gcc_opt_level", flags=["-O0", "-O1", "-O2", "-O3"]),
+    FlagSet(id="gcc_opt_level", flags=["-O0", "-O1", "-O2", "-O3", "-Os"]),
     FlagSet(
         id="gcc_debug_level", flags=["-gdwarf-2", "-gdwarf", "-g0", "-g1", "-g2", "-g3"]
     ),

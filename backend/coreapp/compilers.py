@@ -27,6 +27,7 @@ from coreapp.flags import (
 from coreapp.platforms import (
     GBA,
     GC_WII,
+    WIIDEV,
     IRIX,
     MACOSX,
     MSDOS,
@@ -1200,6 +1201,31 @@ PRODG_393 = GCCCompiler(
     cc=PRODG_CC,
 )
 
+# WIIDEV Compiler flags
+WIIDEV_CC = (
+    'cpp -E -I${COMPILER_DIR}/include "${INPUT}" -o "${INPUT}".i && '
+    "${COMPILER_DIR}/cc1 -quiet -I${COMPILER_DIR}/include -DBM_BROADWAY -DBOOTMII -DLACKS_SYS_TYPES_H -DLACKS_ERRNO_H -DLACKS_STDLIB_H -DLACKS_STRING_H -DLACKS_STRINGS_H -DLACKS_UNISTD_H -msdata=none -quiet -mcpu=750 -mpaired -m32 -mhard-float -mno-eabi -mno-sdata -Os -Wall -Wextra -ffreestanding -ffunction-sections ${COMPILER_FLAGS} -o ${OUTPUT}.s ${INPUT}.i && "
+    "${COMPILER_DIR}/as -mppc -many ${OUTPUT}.s -o ${OUTPUT}"
+)
+
+WIIDEV_440 = GCCCompiler(
+    id="wiidev_440",
+    platform=WIIDEV,
+    cc=WIIDEV_CC,
+)
+
+WIIDEV_444 = GCCCompiler(
+    id="wiidev_444",
+    platform=WIIDEV,
+    cc=WIIDEV_CC,
+)
+
+WIIDEV_447 = GCCCompiler(
+    id="wiidev_447",
+    platform=WIIDEV,
+    cc=WIIDEV_CC,
+)
+
 # NDS_ARM9
 MWCCARM_CC = '${WIBO} "${COMPILER_DIR}/mwccarm.exe" -pragma "msg_show_realref off" -c -proc arm946e -nostdinc -stderr ${COMPILER_FLAGS} -o "${OUTPUT}" "${INPUT}"'
 
@@ -1624,6 +1650,10 @@ _all_compilers: List[Compiler] = [
     PRODG_35,
     PRODG_37,
     PRODG_393,
+    # WIIDEV
+    WIIDEV_440,
+    WIIDEV_444,
+    WIIDEV_447,
     # NDS
     MWCC_20_72,
     MWCC_20_79,

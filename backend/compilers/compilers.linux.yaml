@@ -35,6 +35,11 @@ gc_wii:
   - prodg_37
   - prodg_393
 
+wiidev:
+  - wiidev_440
+  - wiidev_444
+  - wiidev_447
+
 n64:
   - gcc2.7.2kmc
   - gcc2.7.2sn

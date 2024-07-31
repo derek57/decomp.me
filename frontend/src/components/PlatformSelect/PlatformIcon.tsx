@@ -5,6 +5,7 @@ import { platformUrl } from "@/lib/api/urls"
 import LogoDreamcast from "./dreamcast.svg"
 import LogoGBA from "./gba.svg"
 import LogoGCWii from "./gc_wii.svg"
+import LogoWiiDEV from "./wiidev.svg"
 import LogoIRIX from "./irix.svg"
 import LogoMacOSX from "./macosx.svg"
 import LogoMSDOS from "./msdos.svg"
@@ -28,6 +29,7 @@ const ICONS = {
     "n64": LogoN64,
     "gba": LogoGBA,
     "gc_wii": LogoGCWii,
+    "wiidev": LogoWiiDEV,
     "nds_arm9": LogoNDS,
     "ps1": LogoPS1,
     "ps2": LogoPS2,

@@ -209,6 +209,17 @@ GC_WII = Platform(
     has_decompiler=True,
 )
 
+WIIDEV = Platform(
+    id="wiidev",
+    name="WIIDEV (fail0verflow)",
+    description="PowerPC",
+    arch="ppc",
+    assemble_cmd='powerpc-elf-as -mppc -many -mregnames -o "$OUTPUT" "$PRELUDE" "$INPUT"',
+    objdump_cmd="powerpc-elf-objdump",
+    nm_cmd="powerpc-elf-nm",
+    has_decompiler=True,
+)
+
 NDS_ARM9 = Platform(
     id="nds_arm9",
     name="Nintendo DS",
@@ -245,6 +256,7 @@ _platforms: OrderedDict[str, Platform] = OrderedDict(
         "irix": IRIX,
         "n64": N64,
         "gc_wii": GC_WII,
+        "wiidev": WIIDEV,
         "switch": SWITCH,
         "gba": GBA,
         "nds_arm9": NDS_ARM9,
