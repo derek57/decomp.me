@@ -40,6 +40,9 @@ wiidev:
   - wiidev_444
   - wiidev_447
 
+wode:
+  - wode_412
+
 n64:
   - gcc2.7.2kmc
   - gcc2.7.2sn

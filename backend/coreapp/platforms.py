@@ -220,6 +220,17 @@ WIIDEV = Platform(
     has_decompiler=True,
 )
 
+WODE = Platform(
+    id="wode",
+    name="WODE",
+    description="ARMv5TE",
+    arch="arm32",
+    assemble_cmd='arm-openwrt-linux-as -march=armv5te -mfloat-abi=soft -meabi=4 -o "$OUTPUT" "$PRELUDE" "$INPUT"',
+    objdump_cmd="arm-openwrt-linux-objdump",
+    nm_cmd="arm-openwrt-linux-nm",
+    has_decompiler=True,
+)
+
 NDS_ARM9 = Platform(
     id="nds_arm9",
     name="Nintendo DS",
@@ -257,6 +268,7 @@ _platforms: OrderedDict[str, Platform] = OrderedDict(
         "n64": N64,
         "gc_wii": GC_WII,
         "wiidev": WIIDEV,
+        "wode": WODE,
         "switch": SWITCH,
         "gba": GBA,
         "nds_arm9": NDS_ARM9,

@@ -28,6 +28,7 @@ from coreapp.platforms import (
     GBA,
     GC_WII,
     WIIDEV,
+    WODE,
     IRIX,
     MACOSX,
     MSDOS,
@@ -1226,6 +1227,19 @@ WIIDEV_447 = GCCCompiler(
     cc=WIIDEV_CC,
 )
 
+# WODE Compiler flags
+WODE_CC = (
+    'cpp -E -I${COMPILER_DIR}/include "${INPUT}" -o "${INPUT}".i && '
+    "${COMPILER_DIR}/cc1 -quiet -march=armv5te -mtune=xscale -msoft-float -Os -Wall -Wextra -funit-at-a-time -fhonour-copts ${COMPILER_FLAGS} -o ${OUTPUT}.s ${INPUT}.i && "
+    "${COMPILER_DIR}/as -march=armv5te -mfloat-abi=soft -meabi=4 ${OUTPUT}.s -o ${OUTPUT}"
+)
+
+WODE_412 = GCCCompiler(
+    id="wode_412",
+    platform=WODE,
+    cc=WODE_CC,
+)
+
 # NDS_ARM9
 MWCCARM_CC = '${WIBO} "${COMPILER_DIR}/mwccarm.exe" -pragma "msg_show_realref off" -c -proc arm946e -nostdinc -stderr ${COMPILER_FLAGS} -o "${OUTPUT}" "${INPUT}"'
 
@@ -1654,6 +1668,8 @@ _all_compilers: List[Compiler] = [
     WIIDEV_440,
     WIIDEV_444,
     WIIDEV_447,
+    # WODE
+    WODE_412,
     # NDS
     MWCC_20_72,
     MWCC_20_79,
