@@ -125,6 +125,15 @@ COMMON_GCC_FLAGS: Flags = [
     ),
     FlagSet(id="gcc_char_type", flags=["-fsigned-char", "-funsigned-char"]),
     Checkbox("gcc_force_addr", "-fforce-addr"),
+    Checkbox("gcc_unit_at_a_time", "-funit-at-a-time"),
+    Checkbox("gcc_honour_copts", "-fhonour-copts"),
+    Checkbox("gcc_no_strict_aliasing", "-fno-strict-aliasing"),
+    Checkbox("gcc_no_common", "-fno-common"),
+    Checkbox("gcc_no_builtin", "-fno-builtin"),
+    Checkbox("gcc_freestanding", "-ffreestanding"),
+    Checkbox("gcc_working_directory", "-fworking-directory"),
+    Checkbox("gcc_function_sections", "-ffunction-sections"),
+    Checkbox("gcc_data_sections", "-fdata-sections"),
 ]
 
 COMMON_IDO_FLAGS: Flags = [
