@@ -28,7 +28,8 @@ from coreapp.platforms import (
     GBA,
     GC_WII,
     WIIDEV,
-    WODE,
+    WODE_KERNEL,
+    WODE_BOOTLOADER,
     IRIX,
     MACOSX,
     MSDOS,
@@ -1228,7 +1229,7 @@ WIIDEV_447 = GCCCompiler(
 )
 
 # WODE Compiler flags
-WODE_CC = (
+WODE_KERNEL_CC = (
     'cpp -E -I${COMPILER_DIR}/include "${INPUT}" -o "${INPUT}".i && '
     "${COMPILER_DIR}/cc1 -quiet -march=armv5te -mtune=xscale -msoft-float -Os -Wall -Wextra -funit-at-a-time -fhonour-copts ${COMPILER_FLAGS} -o ${OUTPUT}.s ${INPUT}.i && "
     "${COMPILER_DIR}/as -march=armv5te -mfloat-abi=soft -meabi=4 ${OUTPUT}.s -o ${OUTPUT}"
@@ -1236,8 +1237,20 @@ WODE_CC = (
 
 WODE_412 = GCCCompiler(
     id="wode_412",
-    platform=WODE,
-    cc=WODE_CC,
+    platform=WODE_KERNEL,
+    cc=WODE_KERNEL_CC,
+)
+
+WODE_BOOTLOADER_CC = (
+    'cpp -E -I${COMPILER_DIR}/include "${INPUT}" -o "${INPUT}".i && '
+    "${COMPILER_DIR}/cc1 -quiet -nostdinc -D__USES_INITFINI__ -D__KERNEL__ -DTEXT_BASE=0x11029000 -DCONFIG_ARM -D__ARM__ -msoft-float -march=armv4 -march=armv5t -fno-strict-aliasing -fno-common -ffixed-r8 -fno-builtin -ffreestanding -fworking-directory -Os ${COMPILER_FLAGS} -o ${OUTPUT}.s ${INPUT}.i && "
+    "${COMPILER_DIR}/as -march=armv4 -march=armv5t -mfloat-abi=soft -meabi=5 --fix-v4bx ${OUTPUT}.s -o ${OUTPUT}"
+)
+
+WODE_433 = GCCCompiler(
+    id="wode_433",
+    platform=WODE_BOOTLOADER,
+    cc=WODE_BOOTLOADER_CC,
 )
 
 # NDS_ARM9
@@ -1670,6 +1683,7 @@ _all_compilers: List[Compiler] = [
     WIIDEV_447,
     # WODE
     WODE_412,
+    WODE_433,
     # NDS
     MWCC_20_72,
     MWCC_20_79,

@@ -220,14 +220,25 @@ WIIDEV = Platform(
     has_decompiler=True,
 )
 
-WODE = Platform(
-    id="wode",
-    name="WODE",
+WODE_KERNEL = Platform(
+    id="wode_kernel",
+    name="WODE (Kernel)",
     description="ARMv5TE",
     arch="arm32",
     assemble_cmd='arm-openwrt-linux-as -march=armv5te -mfloat-abi=soft -meabi=4 -o "$OUTPUT" "$PRELUDE" "$INPUT"',
     objdump_cmd="arm-openwrt-linux-objdump",
     nm_cmd="arm-openwrt-linux-nm",
+    has_decompiler=True,
+)
+
+WODE_BOOTLOADER = Platform(
+    id="wode_bootloader",
+    name="WODE (Bootloader)",
+    description="ARMv5T",
+    arch="arm32",
+    assemble_cmd='arm-none-eabi-as -march=armv4 -march=armv5t -mfloat-abi=soft -meabi=5 --fix-v4bx -o "$OUTPUT" "$PRELUDE" "$INPUT"',
+    objdump_cmd="arm-none-eabi-objdump",
+    nm_cmd="arm-none-eabi-nm",
     has_decompiler=True,
 )
 
@@ -268,7 +279,8 @@ _platforms: OrderedDict[str, Platform] = OrderedDict(
         "n64": N64,
         "gc_wii": GC_WII,
         "wiidev": WIIDEV,
-        "wode": WODE,
+        "wode_kernel": WODE_KERNEL,
+        "wode_bootloader": WODE_BOOTLOADER,
         "switch": SWITCH,
         "gba": GBA,
         "nds_arm9": NDS_ARM9,

@@ -42,6 +42,7 @@ wiidev:
 
 wode:
   - wode_412
+  - wode_433
 
 n64:
   - gcc2.7.2kmc
