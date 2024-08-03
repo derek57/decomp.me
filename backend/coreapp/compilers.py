@@ -1394,7 +1394,7 @@ MWCC_40_1051 = MWCCNDSArm9Compiler(
     cc=MWCCARM_CC,
 )
 
-CL_WIN = '${WINE} "${COMPILER_DIR}"/Bin/CL.EXE /c /nologo /IZ:"${COMPILER_DIR}"/Include/ ${COMPILER_FLAGS} /Fd"Z:/tmp/" /Bk"Z:/tmp/" /Fo"Z:${OUTPUT}" "Z:${INPUT}"'
+CL_WIN = '${WINE} "${COMPILER_DIR}/Bin/CL.EXE" /c /nologo /I"Z:${COMPILER_DIR}/Include/" ${COMPILER_FLAGS} /Fd"Z:/tmp/" /Bk"Z:/tmp/" /Fo"Z:${OUTPUT}" "Z:${INPUT}"'
 
 MSVC40 = MSVCCompiler(
     id="msvc4.0",
@@ -1452,6 +1452,12 @@ MSVC70 = MSVCCompiler(
 
 MSVC71 = MSVCCompiler(
     id="msvc7.1",
+    platform=WIN32,
+    cc=CL_WIN,
+)
+
+MSVC80 = MSVCCompiler(
+    id="msvc8.0",
     platform=WIN32,
     cc=CL_WIN,
 )
@@ -1727,6 +1733,7 @@ _all_compilers: List[Compiler] = [
     MSVC66,
     MSVC70,
     MSVC71,
+    MSVC80,
     # Watcom, DOS and Win32
     WATCOM_105_C,
     WATCOM_105_CPP,
