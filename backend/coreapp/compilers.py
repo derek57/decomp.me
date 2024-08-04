@@ -1243,8 +1243,8 @@ WODE_412 = GCCCompiler(
 
 WODE_BOOTLOADER_CC = (
     'cpp -E -I${COMPILER_DIR}/include "${INPUT}" -o "${INPUT}".i && '
-    "${COMPILER_DIR}/cc1 -quiet -nostdinc -D__USES_INITFINI__ -D__KERNEL__ -DTEXT_BASE=0x11029000 -DCONFIG_ARM -D__ARM__ -msoft-float -march=armv4 -march=armv5t -fno-strict-aliasing -fno-common -ffixed-r8 -fno-builtin -ffreestanding -fworking-directory -Os ${COMPILER_FLAGS} -o ${OUTPUT}.s ${INPUT}.i && "
-    "${COMPILER_DIR}/as -march=armv4 -march=armv5t -mfloat-abi=soft -meabi=5 --fix-v4bx ${OUTPUT}.s -o ${OUTPUT}"
+    "${COMPILER_DIR}/cc1 -quiet -nostdinc -D__USES_INITFINI__ -D__KERNEL__ -DTEXT_BASE=0x11029000 -DCONFIG_ARM -D__ARM__ -msoft-float -march=armv5te -fno-strict-aliasing -fno-common -ffixed-r8 -fno-builtin -ffreestanding -fworking-directory -Os -Wall -Wextra ${COMPILER_FLAGS} -o ${OUTPUT}.s ${INPUT}.i && "
+    "${COMPILER_DIR}/as -march=armv5te -mfloat-abi=soft -meabi=5 --fix-v4bx ${OUTPUT}.s -o ${OUTPUT}"
 )
 
 WODE_433 = GCCCompiler(

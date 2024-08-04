@@ -161,7 +161,7 @@
     "wiidev_447": "WiiDEV 4.4.7 (gcc 4.4.7)",
 
     "wode_412": "OpenWRT KAMIKAZE (gcc 4.1.2)",
-    "wode_433": "CodeSourcery G++ 2009q1 (gcc 4.3.3)",
+    "wode_433": "CodeSourcery G++ 2009q1-161 (gcc 4.3.3)",
 
     "old_agbcc": "old_agbcc",
     "gcc-5370": "GCC 4.0.1 (Xcode 2.5) (C)",
@@ -293,7 +293,7 @@
     "gcc_force_addr": "Force memory address constants to be copied into registers before doing arithmetic on them",
 
     "gcc_unit_at_a_time": "Parse the whole compilation unit before starting to produce code",
-    "gcc_honour_copts": "-fhonour-copts",
+    "gcc_honour_copts": "Ensure that user-defined compiler optimizations are consistently applied",
     "gcc_no_strict_aliasing": "Allow the compiler to assume the strictest aliasing rules applicable to the language being compiled",
     "gcc_no_common": "Place uninitialized global variables in the BSS section of the object file",
     "gcc_no_builtin": "Don’t recognize built-in functions that do not begin with ‘__builtin_’ as prefix",
@@ -301,6 +301,9 @@
     "gcc_working_directory": "Enable generation of linemarkers in the preprocessor output that let the compiler know the current working directory at the time of preprocessing",
     "gcc_function_sections": "Place each function item into its own section in the output file if the target supports arbitrary sections",
     "gcc_data_sections": "Place each data item into its own section in the output file if the target supports arbitrary sections",
+    "gcc_no_stack_protector": "Emit extra code to check for buffer overflows, such as stack smashing attacks",
+    "gcc_no_directives_only": "When preprocessing, handle directives, but do not expand macros",
+
     "gcc_source_language": "Source language",
     "gcc_source_language.-x c": "C",
     "gcc_source_language.-x c++": "C++",

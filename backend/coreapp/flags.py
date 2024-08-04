@@ -134,6 +134,8 @@ COMMON_GCC_FLAGS: Flags = [
     Checkbox("gcc_working_directory", "-fworking-directory"),
     Checkbox("gcc_function_sections", "-ffunction-sections"),
     Checkbox("gcc_data_sections", "-fdata-sections"),
+    Checkbox("gcc_no_stack_protector", "-fno-stack-protector"),
+    Checkbox("gcc_no_directives_only", "-fno-directives-only"),
 ]
 
 COMMON_IDO_FLAGS: Flags = [
