@@ -136,6 +136,20 @@ COMMON_GCC_FLAGS: Flags = [
     Checkbox("gcc_data_sections", "-fdata-sections"),
     Checkbox("gcc_no_stack_protector", "-fno-stack-protector"),
     Checkbox("gcc_no_directives_only", "-fno-directives-only"),
+    Checkbox("gcc_no_builtin_printf", "-fno-builtin-printf"),
+    Checkbox("gcc_omit_frame_pointer", "-fomit-frame-pointer"),
+    Checkbox("gcc_mtune_xscale", "-mtune=xscale"),
+    Checkbox("gcc_mtune_arm9tdmi", "-mtune=arm9tdmi"),
+    Checkbox("gcc_mtune_arm926ej_s", "-mtune=arm926ej-s"),
+    Checkbox("gcc_msoft_float", "-msoft-float"),
+    Checkbox("gcc_mhard_float", "-mhard-float"),
+    Checkbox("gcc_march_armv4", "-march=armv4"),
+    Checkbox("gcc_march_armv5", "-march=armv5"),
+    Checkbox("gcc_march_armv5t", "-march=armv5t"),
+    Checkbox("gcc_march_armv5te", "-march=armv5te"),
+    Checkbox("gcc_meabi_4", "-meabi=4"),
+    Checkbox("gcc_meabi_5", "-meabi=5"),
+    Checkbox("gcc_nostdinc", "-nostdinc"),
 ]
 
 COMMON_IDO_FLAGS: Flags = [

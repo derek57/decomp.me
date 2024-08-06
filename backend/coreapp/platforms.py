@@ -236,9 +236,9 @@ WODE_BOOTLOADER = Platform(
     name="WODE (Bootloader)",
     description="ARMv5TE",
     arch="arm32",
-    assemble_cmd='arm-none-eabi-as -march=armv5te -mfloat-abi=soft -meabi=5 --fix-v4bx -o "$OUTPUT" "$PRELUDE" "$INPUT"',
-    objdump_cmd="arm-none-eabi-objdump",
-    nm_cmd="arm-none-eabi-nm",
+    assemble_cmd='arm-linux-gnueabi-as -march=armv4 -march=armv5te -mfloat-abi=soft -meabi=4 -o "$OUTPUT" "$PRELUDE" "$INPUT"',
+    objdump_cmd="arm-linux-gnueabi-objdump",
+    nm_cmd="arm-linux-gnueabi-nm",
     has_decompiler=True,
 )
 
