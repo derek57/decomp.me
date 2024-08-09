@@ -1242,9 +1242,9 @@ WODE_412 = GCCCompiler(
 )
 
 WODE_BOOTLOADER_CC = (
-    'cpp -E -I${COMPILER_DIR}/include "${INPUT}" -o "${INPUT}".i && '
-    "${COMPILER_DIR}/cc1 -quiet -nostdinc -imultilib soft-float -D__KERNEL__ -DTEXT_BASE=0x11029000 -DCONFIG_ARM -D__ARM__ -msoft-float -march=armv4 -march=armv5te -fno-strict-aliasing -fno-common -ffixed-r8 -fno-builtin -ffreestanding -fworking-directory -Os -Wall -Wextra -Wstrict-prototypes ${COMPILER_FLAGS} -o ${OUTPUT}.s ${INPUT}.i && "
-    "${COMPILER_DIR}/as -march=armv4 -march=armv5te -mfloat-abi=soft -meabi=4 ${OUTPUT}.s -o ${OUTPUT}"
+    'cpp -E -I${COMPILER_DIR}/include -I${COMPILER_DIR}/include/bootloader -I${COMPILER_DIR}/include/cpu/arm926ejs/lpc313x -D__ARM__ "${INPUT}" -o "${INPUT}".i && '
+    "${COMPILER_DIR}/cc1 -quiet -nostdinc -I${COMPILER_DIR}/include/bootloader -imultilib soft-float -iprefix ${COMPILER_DIR}/include/compiler -M -MQ ${OUTPUT} -D__KERNEL__ -DTEXT_BASE=0x11029000 -DCONFIG_ARM -D__ARM__ -isystem ${COMPILER_DIR}/include/compiler/include -msoft-float -march=armv5te -fno-strict-aliasing -fno-common -ffixed-r8 -fno-builtin -ffreestanding -fworking-directory -fshort-enums -Os -Wall -Wextra -Wstrict-prototypes ${COMPILER_FLAGS} -o ${OUTPUT}.s ${INPUT}.i && "
+    "${COMPILER_DIR}/as -march=armv5te -mfloat-abi=soft -meabi=4 ${OUTPUT}.s -o ${OUTPUT}"
 )
 
 WODE_433 = GCCCompiler(
