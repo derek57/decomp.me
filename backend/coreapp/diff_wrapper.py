@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 MAX_FUNC_SIZE_LINES = 25000
 
-
 class DiffWrapper:
     @staticmethod
     def filter_objdump_flags(compiler_flags: str) -> str:
@@ -90,6 +89,29 @@ class DiffWrapper:
         )
 
     @staticmethod
+    def get_function_size(object_file, function_name):
+        # Run the `readelf` command
+        result = subprocess.run(
+            ["readelf", "-s", object_file],
+            stdout=subprocess.PIPE,
+            text=True
+        )
+
+        # Split the output by lines
+        lines = result.stdout.splitlines()
+
+        # Iterate over each line to find the function
+        for line in lines:
+            if function_name in line:
+                # The line format includes the size in the column after value
+                parts = line.split()
+                if len(parts) >= 8:
+                    size = int(parts[2])
+                    return size
+
+        return None
+
+    @staticmethod
     def get_objdump_target_function_flags(
         sandbox: Sandbox, target_path: Path, platform: Platform, label: str
     ) -> List[str]:
@@ -101,6 +123,8 @@ class DiffWrapper:
 
         if not platform.nm_cmd:
             raise NmError(f"No nm command for {platform.id}")
+
+        function_size = DiffWrapper.get_function_size(sandbox.rewrite_path(target_path), label)
 
         try:
             nm_proc = sandbox.run_subprocess(
@@ -127,7 +151,11 @@ class DiffWrapper:
                 nm_line = line.split()
                 if len(nm_line) == 3 and label == nm_line[2]:
                     start_addr = int(nm_line[0], 16)
-                    return [f"--start-address={start_addr}"]
+                    if function_size != None:
+                        stop_addr = start_addr + function_size
+                        return [f"--start-address={start_addr}"] + [f"--stop-address={stop_addr}"]
+                    else:
+                        return [f"--start-address={start_addr}"]
 
         return ["--start-address=0"]
 
@@ -202,6 +230,7 @@ class DiffWrapper:
                 except subprocess.TimeoutExpired as e:
                     raise ObjdumpError("Timeout expired")
                 except subprocess.CalledProcessError as e:
+                    print('oops')
                     raise ObjdumpError.from_process_error(e)
             else:
                 raise ObjdumpError(f"No objdump command for {platform.id}")

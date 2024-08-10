@@ -161,7 +161,7 @@
     "wiidev_447": "WiiDEV 4.4.7 (gcc 4.4.7)",
 
     "wode_412": "OpenWRT KAMIKAZE (gcc 4.1.2)",
-    "wode_433": "Embedded Linux Dev.-Kit (ELDK) (gcc 4.2.2)",
+    "wode_433": "Sourcery G++ Lite arm-2009q1-161 (GCC 4.3.3)",
 
     "old_agbcc": "old_agbcc",
     "gcc-5370": "GCC 4.0.1 (Xcode 2.5) (C)",
