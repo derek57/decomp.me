@@ -230,7 +230,6 @@ class DiffWrapper:
                 except subprocess.TimeoutExpired as e:
                     raise ObjdumpError("Timeout expired")
                 except subprocess.CalledProcessError as e:
-                    print('oops')
                     raise ObjdumpError.from_process_error(e)
             else:
                 raise ObjdumpError(f"No objdump command for {platform.id}")
