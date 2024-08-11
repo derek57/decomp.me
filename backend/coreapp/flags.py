@@ -139,6 +139,7 @@ COMMON_GCC_FLAGS: Flags = [
     Checkbox("gcc_no_builtin_printf", "-fno-builtin-printf"),
     Checkbox("gcc_omit_frame_pointer", "-fomit-frame-pointer"),
     Checkbox("gcc_short_enums", "-fshort-enums"),
+    Checkbox("gcc_no_inline", "-fno-inline"),
     Checkbox("gcc_mtune_xscale", "-mtune=xscale"),
     Checkbox("gcc_mtune_arm9tdmi", "-mtune=arm9tdmi"),
     Checkbox("gcc_mtune_arm926ej_s", "-mtune=arm926ej-s"),

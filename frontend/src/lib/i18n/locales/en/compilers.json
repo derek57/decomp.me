@@ -305,6 +305,7 @@
     "gcc_no_builtin_printf": "Do not assume that the printf function is a built-in function (uses standard C library function implementation)",
     "gcc_omit_frame_pointer": "Optimize the use of CPU registers by telling the compiler to omit the frame pointer",
     "gcc_short_enums": "Handle enum typedefs (where possible) as byte instead of an integer",
+    "gcc_no_inline": "Disable inlining of functions",
     "gcc_mtune_xscale": "Optimize code for XSCALE",
     "gcc_mtune_arm9tdmi": "Optimize code for ARM9TDMI",
     "gcc_mtune_arm926ej_s": "Optimize code for ARM926EJ-S",
