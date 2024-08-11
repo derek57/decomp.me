@@ -100,13 +100,14 @@ class DiffWrapper:
         # Split the output by lines
         lines = result.stdout.splitlines()
 
-        # Iterate over each line to find the function
+        # Iterate over each line to find the exact match for the function
         for line in lines:
-            if function_name in line:
-                # The line format includes the size in the column after value
-                parts = line.split()
-                if len(parts) >= 8:
-                    size = int(parts[2])
+            parts = line.split()
+            if len(parts) >= 8:
+                # Check if the last part of the line matches the function_name exactly
+                if parts[-1] == function_name:
+                    # The size is in the third column (index 2)
+                    size = int(parts[2], 16)  # Assume hexadecimal format
                     return size
 
         return None
